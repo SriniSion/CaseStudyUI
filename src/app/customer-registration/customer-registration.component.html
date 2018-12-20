@@ -1,0 +1,94 @@
+  <div class="container-fluid" [hidden] ="submitStatus">
+        <div class="row">
+           
+            <div class="col-lg-10" >
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Customer Form</h4>
+                    </div>
+                    <div class="content">
+                        <form #productForm="ngForm" (ngSubmit)= "onSubmit()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>CustomerName</label>
+                                        <input type ="text" name="Name" 
+                                        [(ngModel)]="model.Customername" required #name="ngModel" class="form-control border-input">
+                                        <div *ngIf="!name.valid" class="ng-valid" required> Customername is required</div>
+                                          </div>
+                                    </div>
+              
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="contact">Contact</label>
+                                       <input type = "text"  name = "contact"
+                                              [(ngModel)] = "model.customerContact" required #contact ="ngModel" class="form-control border-input">
+                                              <div *ngIf="!contact.valid" class="ng-valid" required> Contact is required</div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" >
+                                        <label>Address</label>
+                                        <textarea name= "address"
+                                            [(ngModel)] = "model.customerAddress" required #address ="ngModel" class="form-control border-input">
+                                            <div class="md-errors-spacer" [hidden]="address.valid || address.untouched">
+                                            <div  *ngIf="address.errors">
+                                            <div *ngIf="address?.errors.required">
+                                                Email is required
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </textarea>
+                                  
+                                     </div>
+                                </div>
+                            </div>
+                           <div class="row">
+                            <div class="col-md-6">  
+                            <div class="form-group">
+                                        <label>E-Mail</label>
+                                        <input type="email" id="contactemail" name="contactemail"
+                                          required pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                                          [(ngModel)]="model.customerEmail" #contactemail="ngModel" class="form-control border-input" />
+                                        <div class="md-errors-spacer" [hidden]="contactemail.valid || contactemail.untouched">
+                                            <div  *ngIf="contactemail.errors">
+                                            <div *ngIf="contactemail?.errors.required">
+                                                Email is required
+                                            </div>
+                                              <div  *ngIf="contactemail?.errors.pattern">
+                                                  Email is invalid
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>CustomerType</label>
+                                       <select  class="form-control border-input"  [(ngModel)] = "model.subscription" #prtype="ngModel" name = "subcription">
+                                          <option *ngFor="let type of custtypes" >{{type}}</option>
+                                        </select>
+                                        <div *ngIf="!prtype.valid" class="ng-valid" required>Select a Type</div>
+                                    </div>
+                                </div>
+                          
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info btn-fill btn-wd" [disabled]="!productForm.valid" >Register Customer</button>
+                            </div>
+                            
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
